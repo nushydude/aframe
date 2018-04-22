@@ -4,7 +4,7 @@
 var debug = require('./debug');
 var deepAssign = require('deep-assign');
 var device = require('./device');
-var objectAssign = require('object-assign');
+var objectAssign = Object.assign;
 var objectPool = require('./object-pool');
 
 var warn = debug('utils:warn');

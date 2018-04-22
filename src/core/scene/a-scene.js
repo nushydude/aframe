@@ -5,12 +5,10 @@ var re = require('../a-register-element');
 var scenes = require('./scenes');
 var systems = require('../system').systems;
 var THREE = require('../../lib/three');
-var TWEEN = require('@tweenjs/tween.js');
 var utils = require('../../utils/');
 // Require after.
 var AEntity = require('../a-entity');
 var ANode = require('../a-node');
-var initPostMessageAPI = require('./postMessage');
 
 var bind = utils.bind;
 var isIOS = utils.device.isIOS();
@@ -65,13 +63,6 @@ module.exports.AScene = registerElement('a-scene', {
         this.setupRenderer();
         this.resize();
         this.addFullScreenStyles();
-        initPostMessageAPI(this);
-
-        // Default components.
-        this.setAttribute('inspector', '');
-        this.setAttribute('keyboard-shortcuts', '');
-        this.setAttribute('screenshot', '');
-        this.setAttribute('vr-mode-ui', '');
       },
       writable: true
     },
@@ -583,9 +574,6 @@ module.exports.AScene = registerElement('a-scene', {
       value: function (time, timeDelta) {
         var i;
         var systems = this.systems;
-
-        // Animations.
-        TWEEN.update();
 
         // Components.
         for (i = 0; i < this.behaviors.tick.length; i++) {

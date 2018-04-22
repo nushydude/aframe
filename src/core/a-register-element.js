@@ -12,9 +12,6 @@
   in the derived prototype.
 */
 
-// Polyfill `document.registerElement`.
-require('document-register-element');
-
 var ANode;  // Must declare before AEntity. Initialized at the bottom.
 var AEntity;
 var knownTags = module.exports.knownTags = {};

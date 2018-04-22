@@ -1,6 +1,6 @@
 /* global THREE */
 var debug = require('./debug');
-var extend = require('object-assign');
+var extend = Object.assign;
 
 var warn = debug('utils:coordinates:warn');
 
