@@ -62720,8 +62720,17 @@ module.exports.AScene = registerElement('a-scene', {
           vrDisplay = utils.device.getVRDisplay();
           vrManager.setDevice(vrDisplay);
           vrManager.enabled = true;
-          return vrDisplay.requestPresent([{source: this.canvas}])
-                          .then(enterVRSuccess, enterVRFailure);
+
+          return new Promise((res) => {
+            setTimeout(() => {
+              vrDisplay.requestPresent([{source: this.canvas}])
+                            .then(enterVRSuccess)
+                            .then(res)
+                            .catch(enterVRFailure);
+            }, 1000);
+          });
+          // return vrDisplay.requestPresent([{source: this.canvas}])
+                          // .then(enterVRSuccess, enterVRFailure);
         }
         enterVRSuccess();
         return Promise.resolve();
