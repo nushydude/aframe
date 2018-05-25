@@ -25318,7 +25318,10 @@ function rebuildAttribute (attrib, data, itemSize) {
 				currentPixelRatio = renderer.getPixelRatio();
 				currentSize = renderer.getSize();
 
-				renderer.setDrawingBufferSize( renderWidth * 2, renderHeight, 1 );
+				// Multiply renderWidth and renderHeight by 1.2 to force a slight increase in quality
+				renderer.setDrawingBufferSize( renderWidth * 3.2, renderHeight * 1.2, 1 );
+
+				// renderer.setDrawingBufferSize( renderWidth * 2, renderHeight, 1 );
 
 			} else if ( scope.enabled ) {
 
@@ -62980,6 +62983,10 @@ module.exports.AScene = registerElement('a-scene', {
             rendererConfig.antialias = rendererAttr.antialias === 'true';
           }
         }
+
+        // Force antialias to true, it is not being passed down from React.
+        rendererConfig.antialias = true;
+
         renderer = this.renderer = new THREE.WebGLRenderer(rendererConfig);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.sortObjects = false;
